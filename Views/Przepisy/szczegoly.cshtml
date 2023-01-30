@@ -1,0 +1,30 @@
+﻿@model zpnet.Models.ksiazka
+
+
+@{
+  ViewData["Title"] = "Szczegóły";
+}
+
+<h1>Nazwa: @ViewBag.przepis.nazwa</h1>
+<h2>Typ: @ViewBag.przepis.typ</h2>
+<h2>Autor: @ViewBag.przepis.autor.imieNazwisko</h2>
+<h3>Użyty w książkach:      
+    @ViewBag.Count
+    raz/razy</h3>
+<h4>Lista Książek: </h4>
+<ul style="font-weight:bolder"> 
+@foreach(var k in ViewBag.przepis.ksiazki)
+    {                    
+          <li>@k.nazwa </li>
+      
+    }
+    </ul>
+<h5>Przepis:</h5>
+<p style="font-weight:bolder"> 
+    @ViewBag.przepis.przepisText
+    </p>
+    
+
+
+
+    <a asp-action="Index"><button type="button" class="btn btn-secondary">Powrót do listy</button></a>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<zpnet.Models.autor>
+
+@{
+    ViewData["Title"] = "Autorzy";
+}
+
+<h1>Lista autorów:</h1>
+<h5>Ilość autorów: @Model.Count()</h5>
+<p>
+    <a asp-action="Create"><button type="button" class="btn btn-success">Dodaj autora</button></a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.imie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Data_u)
+            </th>
+                <th>
+              Książki:
+            </th>
+                <th>
+               Przepisy:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_u)
+            </td>
+                    <td>
+                @item.ksiazki.Count()
+                        
+
+            </td>
+                    <td>
+                @item.przepisy.Count()
+                                
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id"><button type="button" class="btn btn-primary">Edytuj</button></a> 
+                <a asp-action="Delete" asp-route-id="@item.id"><button type="button" class="btn btn-danger">Usuń</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

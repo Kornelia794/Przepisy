@@ -1,0 +1,23 @@
+﻿@model zpnet.Models.ksiazka
+
+
+@{
+  ViewData["Title"] = "Szczegóły";
+}
+
+<h1>Książka: @ViewBag.ksiazka.nazwa</h1>
+<h2>Autor: @ViewBag.ksiazka.autor.imieNazwisko</h2>
+
+<h3>Lista przepisów</h3>
+<ul>
+
+     
+@foreach(var k in ViewBag.ksiazka.przepisy)
+{                    
+    <li>  @k.nazwa  <a asp-controller="Przepisy" asp-action="szczegoly" asp-route-id="@k.Id" ><button style="padding:1px" class="btn btn-info btn-sm" >Szczegóły przepisu</button> </a></li> 
+ }
+</ul>    
+
+
+
+    <a asp-action="Index"><button type="button" class="btn btn-secondary">Powrót do listy</button></a>

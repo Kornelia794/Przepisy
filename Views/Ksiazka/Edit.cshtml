@@ -1,0 +1,41 @@
+﻿@model zpnet.Models.ksiazka
+
+@{
+    ViewData["Title"] = "Edycja";
+}
+
+<h1>Edytuj książkę</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="nazwa" class="control-label"></label>
+                <input asp-for="nazwa" class="form-control" />
+                <span asp-validation-for="nazwa" class="text-danger"></span>
+            </div>
+         <!--   <div class="form-group">
+                <label asp-for="dataStworzenia" class="control-label"></label>
+                <input asp-for="dataStworzenia" class="form-control" />
+                <span asp-validation-for="dataStworzenia" class="text-danger"></span>
+            </div>-->
+            <div class="form-group">
+                <label asp-for="autorid" class="control-label"></label>
+                <select asp-for="autorid" class="form-control" asp-items="ViewBag.autorzy"></select>
+                <span asp-validation-for="autorid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <a asp-action="Index"><button type="button" class="btn btn-secondary">Powrót do listy</button></a>
+</div>
+

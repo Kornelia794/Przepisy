@@ -1,0 +1,85 @@
+﻿@model IEnumerable<zpnet.Models.przepis>
+
+@{
+    ViewData["Title"] = "Lista przepisów";
+}
+<style>
+  .hide{
+    visibility: hidden;
+  width: 0px;
+  border: 0px;
+  height: 0px;
+}
+
+form {
+    display: block;
+float: left;
+padding-right:5px;
+}
+</style>
+<h1>Lista przepisów:</h1>
+<h5>
+    Aktualna ilość posiadanych przepisów: @Model.Count().
+</h5>
+
+
+<p>
+    <a asp-action="Create"><button class="btn btn-success" >Dodaj nowy przepis</button></a> 
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                        <th>
+                @Html.DisplayNameFor(model => model.Id):
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nazwa):
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.typ):
+            </th>
+                 <th>
+                     Autor:
+            </th>
+    <th>
+        W książkach:
+    </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nazwa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.typ)
+            </td>
+               <td>
+                @Html.DisplayFor(modelItem => item.autor.imieNazwisko)
+            </td>
+            <td>
+                @if (@item.ksiazki != null)
+                {
+                    @item.ksiazki.Count()
+                }
+                
+            </td>
+            <td>
+                <a asp-action="edycja" asp-route-id="@item.Id">
+                    <button  class="btn btn-success" >Edytuj</button>
+                    </a> 
+                 <a asp-action="szczegoly" asp-route-id="@item.Id"> <button  class="btn btn-info" >Szczegóły</button></a> 
+                 <form asp-action="Delete">
+                       <input type="number" class="hide" name="id" value="@item.Id" type="hidden" style="visible:hidden"/> 
+                        <input type="submit" value="Usuń" class="btn btn-danger" />  
+                    </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

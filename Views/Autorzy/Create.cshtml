@@ -1,0 +1,41 @@
+﻿@model zpnet.Models.autor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Dodaj nowego autora:</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="imie" class="control-label"></label>
+                <input asp-for="imie" class="form-control" />
+                <span asp-validation-for="imie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="nazwisko" class="control-label"></label>
+                <input asp-for="nazwisko" class="form-control" />
+                <span asp-validation-for="nazwisko" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Data_u" class="control-label"></label>
+                <input asp-for="Data_u" class="form-control" />
+                <span asp-validation-for="Data_u" class="text-danger"></span>
+            </div>
+ 
+            <div class="form-group">
+                <input type="submit" value="Utwórz" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <a asp-action="Index"><button type="button" class="btn btn-secondary">Powrót do listy</button></a>
+</div>
+
